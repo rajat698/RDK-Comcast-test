@@ -1,21 +1,20 @@
 import requests
-from datetime import datetime, timezone
+from timeFormatter import time_formatter
 
+#Define OpenWeather API Key
 API_key = "31ad51abcb9c543b6a9133f96f427dfc"
 
+#Initialize a favorite citis list
 favourites = []
 
-def utc_to_ampm(timestamp):
-
-    # Convert UTC timestamp to a datetime object
-    utc = datetime.utcfromtimestamp(timestamp).replace(tzinfo=timezone.utc)
-
-    # Format the datetime object to AM/PM format
-    result = utc.strftime("%I:%M:%S %p")
-
-    return result
-
+# Retrieves current weather data for given city from OpenWeatherMap API and returns formatted string
+# Params:
+#   city: Name of city to get weather for
+# Returns:
+#   String containing formatted weather data if city is valid, error message otherwise
 def display_weather(city):
+
+    #Defining the API URL
     MAIN_URL = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_key}&units=imperial"
     response = requests.get(MAIN_URL).json()
 
@@ -33,25 +32,33 @@ Visibility: {response['visibility']}
 Wind Speed: {response['wind']['speed']} 
 Wind Degree: {response['wind']['deg']} 
 
-Sunrise: {utc_to_ampm(response['sys']['sunrise'])} UTC 
-Sunset: {utc_to_ampm(response['sys']['sunset'])} UTC'''
+Sunrise: {time_formatter(response['sys']['sunrise'])} UTC 
+Sunset: {time_formatter(response['sys']['sunset'])} UTC'''
         return weather_data
-    
+
     except:
         return "Invalid/Incorrect city name"
 
+# Adds a city to the favorites list if it does not already exist
 def add_favourites(city):
+
+    #Return error if city already exists in favorites
     if city in favourites:
         return "City already exists in favorites"
-    
+
+    #Add a city to the favorites list if it does not already exist
     favourites.append(city)
     return f"\nUpdated Favourites List: {favourites}\n"
 
+# Removes a city from the favorites list
 def remove_favourites(city):
     favourites.remove(city)
     return f"Updated Favourites List: {favourites}\n"
 
+
+#Main function to run the weather app
 def main():
+    #Intro message
     print('''Welcome to Rajat's CLI Weather APP
           
 Enter name of a city to see the current weather
@@ -66,11 +73,14 @@ Enter 'exit' to exit the application
           
 Note - Imperial system is used for units''')
 
+    #Infinite while loop to keep the app running until manually exited
     while True:
         user_input = input("\n")
 
+        #Handle adding favourites
         if user_input == "1":
 
+            #Check if favourite list is full before adding
             if len(favourites) == 3:
                 print("\nNumber of favorite cities cannot exceed 3\n")
 
@@ -78,20 +88,25 @@ Note - Imperial system is used for units''')
                 city = input("Please enter the city you want to add to favorites:\n")
                 print(add_favourites(city))
 
+        #Handle displaying favourites
         elif user_input == "2":
             for city in favourites:
                 print("\n", city)
                 print(display_weather(city))
 
+        #Handle removing favourites
         elif user_input == "3":
             city = input("Please enter the city you want to remove from favorites:\n")
             print(remove_favourites(city))
 
+        #Handle exiting the app
         elif user_input == "exit":
             break
-
+        
+        #Handle rest of the inputs (display city weather)
         else:
             print(display_weather(user_input) if user_input not in '123' else "Invalid choice, please enter a valid city or option.")
 
+#Driver code to call main function
 if __name__ == "__main__":
     main()
