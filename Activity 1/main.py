@@ -4,14 +4,10 @@ from timeFormatter import time_formatter
 #Define OpenWeather API Key
 API_key = "31ad51abcb9c543b6a9133f96f427dfc"
 
-#Initialize a favorite citis list
+#Initialize a favorite cities list
 favourites = []
 
 # Retrieves current weather data for given city from OpenWeatherMap API and returns formatted string
-# Params:
-#   city: Name of city to get weather for
-# Returns:
-#   String containing formatted weather data if city is valid, error message otherwise
 def display_weather(city):
 
     #Defining the API URL
@@ -50,13 +46,15 @@ def add_favourites(city):
 
     #Add a city to the favorites list if it does not already exist
     favourites.append(city)
-    return f"\nUpdated Favourites List: {favourites}\n"
+    return f"\nUpdated Favourites List:\n{', '.join(map(str, favourites))}"
 
 # Removes a city from the favorites list
 def remove_favourites(city):
+    if city not in favourites:
+        return "City not in favorites list"
+    
     favourites.remove(city)
-    return f"Updated Favourites List: {favourites}\n"
-
+    return f"\nUpdated Favourites List:\n{', '.join(map(str, favourites))}"
 
 #Main function to run the weather app
 def main():
