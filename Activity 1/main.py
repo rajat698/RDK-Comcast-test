@@ -90,14 +90,22 @@ Note - Imperial system is used for units''')
 
         #Handle displaying favourites
         elif user_input == "2":
-            for city in favourites:
-                print("\n", city)
-                print(display_weather(city))
+
+            if len(favourites) == 0:
+                print("\nFavourites list is empty\n")
+
+            else:
+                for city in favourites:
+                    print("\n", city)
+                    print(display_weather(city))
 
         #Handle removing favourites
         elif user_input == "3":
-            city = input("Please enter the city you want to remove from favorites:\n")
-            print(remove_favourites(city))
+            if len(favourites) == 0:
+                print("\nFavourites list is empty\n")
+            else:
+                city = input("Please enter the city you want to remove from favorites:\n")
+                print(remove_favourites(city))
 
         #Handle exiting the app
         elif user_input == "exit":
