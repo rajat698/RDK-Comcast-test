@@ -29,10 +29,11 @@ Either compile the file in your IDE or run it in the terminal:
 2. ```gcc main.c -o main```
 3. ```./main```
 
+It has following functions:-
 
 1. split function to split the array around the last element (used for quick sort).
-2. sort function to sort the array. It uses quick sort.
-3. sortAndFindMedian as described in the pseudo code. This function does not have empty array exception as it wasn't given in the pseudo code. Also, length is passed as a parameter, because that is a good practice in C.
+2. -- sort function to sort the array. It uses quick sort.
+3. -- sortAndFindMedian as described in the pseudo code. This function does not have empty array exception as it wasn't given in the pseudo code. Also, length is passed as a parameter, because that is a good practice in C.
 4. showArray function to print the array.
 5. testCase function to run a test case.
 6. main driver function.
