@@ -22,8 +22,11 @@ Activity 1 - Weather app is made in python. It is located in the folder named 'A
 
 Activity 2 is done in C. It has a bunch of functions and comes with predefined test cases.
 
+
+
 # Instructions
-The file is present in main.c in the folder named 'Activity 2'
+The file is present in main.c in the folder named 'Activity 2'. Required sort and sortAndFindMedian are on line 47 and 60.
+
 Either compile the file in your IDE or run it in the terminal:
 1. ```cd /location/to/Activity 2 folder```
 2. ```gcc main.c -o main```
