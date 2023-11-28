@@ -18,6 +18,7 @@ def display_weather(city):
     MAIN_URL = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_key}&units=imperial"
     response = requests.get(MAIN_URL).json()
 
+    #Return weather data
     try:
         weather_data = f'''\nDescription: {response['weather'][0]['description']}
 Temperature: {response['main']['temp']} 
@@ -36,6 +37,7 @@ Sunrise: {time_formatter(response['sys']['sunrise'])} UTC
 Sunset: {time_formatter(response['sys']['sunset'])} UTC'''
         return weather_data
 
+    #Error in case the city name entered is not correct
     except:
         return "Invalid/Incorrect city name"
 
