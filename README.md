@@ -11,7 +11,7 @@ Activity 1 - Weather app is made in python. It is located in the folder named 'A
 3. The features of the application are as follow :-
      
     1. Enter name of a city to see the current weather
-    2. Press 1 to add a city to favourites list
+    2. Press 1 to add a city to favourites list (limit 3)
     3. Press 2 to display favourites
     4. Press 3 to remove a city from favourites
     5. Enter 'exit' to exit the application
