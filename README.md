@@ -24,7 +24,7 @@ Activity 2 is done in C. It has a bunch of functions and comes with predefined t
 
 
 
-# Instructions
+### Instructions
 The file is present in main.c in the folder named 'Activity 2'. Required sort and sortAndFindMedian are on line 47 and 60.
 
 Either compile the file in your IDE or run it in the terminal:
